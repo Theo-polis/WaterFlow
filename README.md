@@ -1,5 +1,7 @@
 # WaterFlow: Explicit Physics-Prior Rectified Flow for Underwater Saliency Mask Generation
 
+[Runting Li](https://github.com/Theo-polis), Shijie Lian, Hua Li, Yutong Li, Wenhui Wu, Sam Kwong
+
 This repository is the official implementation of "WaterFlow: Explicit Physics-Prior Rectified Flow for 
 Underwater Saliency Mask Generation" (ICASSP 2026).
 
@@ -114,11 +116,12 @@ accelerate launch sample.py \
 
 ## Acknowledgements
 
+## Acknowledgements
+
 This project is built on top of [CamoDiffusion](https://github.com/Rapisurazurite/CamoDiffusion).
-The underwater physics model is based on 
-[Sea-Thru](https://openaccess.thecvf.com/content_CVPR_2019/papers/Akkaynak_Sea-Thru_A_Method_for_Removing_Water_From_Underwater_Images_CVPR_2019_paper.pdf) 
-(Akkaynak & Treibitz, CVPR 2019).
+The underwater physics model is based on [Sea-Thru](https://openaccess.thecvf.com/content_CVPR_2019/papers/Akkaynak_Sea-Thru_A_Method_for_Removing_Water_From_Underwater_Images_CVPR_2019_paper.pdf) (Akkaynak & Treibitz, CVPR 2019).
 The backbone follows [PVTv2](https://github.com/whai362/PVT).
+The diffusion framework is based on [DDPM](https://arxiv.org/abs/2006.11239) (Ho et al., NeurIPS 2020) and [Rectified Flow](https://arxiv.org/abs/2209.03003) (Liu et al., ICLR 2023), with implementations from [denoising-diffusion-pytorch](https://github.com/lucidrains/denoising-diffusion-pytorch) and [rectified-flow-pytorch](https://github.com/lucidrains/rectified-flow-pytorch) by lucidrains.
 
 ## Citation
 

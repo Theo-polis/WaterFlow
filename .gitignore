@@ -1,0 +1,13 @@
+.idea/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+results/
+*.pt
+*.pth
+data/
+pretrained_weights/
+*.log
+wandb/
+.DS_Store
