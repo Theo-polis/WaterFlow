@@ -116,8 +116,6 @@ accelerate launch sample.py \
 
 ## Acknowledgements
 
-## Acknowledgements
-
 This project is built on top of [CamoDiffusion](https://github.com/Rapisurazurite/CamoDiffusion).
 The underwater physics model is based on [Sea-Thru](https://openaccess.thecvf.com/content_CVPR_2019/papers/Akkaynak_Sea-Thru_A_Method_for_Removing_Water_From_Underwater_Images_CVPR_2019_paper.pdf) (Akkaynak & Treibitz, CVPR 2019).
 The backbone follows [PVTv2](https://github.com/whai362/PVT).
@@ -140,7 +138,13 @@ This work extends CamoDiffusion. If you use this repository, please also conside
 @article{chen2023camodiffusion,
   title   = {CamoDiffusion: Camouflaged Object Detection via Conditional Diffusion Models},
   author  = {Chen, Zhongxi and Sun, Ke and Lin, Xianming and Ji, Rongrong},
-  journal = {arXiv preprint arXiv:2305.17932},
+  journal = {arXiv preprint arXiv:2305.17932
+        
+        
+        
+        
+        
+        },
   year    = {2023}
 }
 
