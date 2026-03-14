@@ -1,0 +1,86 @@
+project_name: waterflow
+
+# __base__:
+#   - config/dataset_352x352.yaml
+
+model:
+  name: waterflow.underwater_net.UnderwaterNet
+  params:
+    class_num: 1
+    mask_chans: 1
+    use_physics: True        # 启用物理先验
+    physics_dim: 64         # 物理特征维度
+
+cond_uvit:
+  name: waterflow.net.EmptyObject
+  params:
+    conditioning_klass: waterflow.net.EmptyObject
+
+diffusion_model:
+  name: waterflow.RectifiedFlowWrapper.CondRectifiedFlow
+  params:
+    model: #model
+    image_size: 352
+    channels: 1
+    cond_channels: 3
+    loss_type: 'waterflow.loss.structure_loss'
+    num_sample_steps: 20
+    solver_method: "euler"
+    pred_objective: "x0"
+
+    predict: "flow"
+    clip_values: [-1.0, 1.0]
+
+    odeint_kwargs:
+      atol: 1e-5
+      rtol: 1e-5
+      method: "euler"
+
+    path_type: "cond_ot"
+    sigma_min: 1e-5
+    clip_sample_denoised: True
+
+optimizer:
+  name: torch.optim.AdamW
+  params:
+    lr: 2.5e-5
+
+train_val_forward_fn: "waterflow.train_val_forward.train_val_forward"
+
+# 训练数据集
+train_dataset:
+  name: dataset.underwater_data.UnderwaterPolypObjDataset
+  params:
+    image_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD10K/TrainDataset/Imgs/'
+    gt_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD10K/TrainDataset/GT/'
+    trainsize: 352
+    boundary_modification: True
+    use_depth: True                    # 训练时使用深度图
+    depth_estimation_method: "midas"   # 深度估计方法
+    depth_root: "/root/autodl-tmp/WaterFlow/media/dataset/USOD10K/TrainDataset/DepRaw/"  # 如果有预计算的深度图
+
+test_dataset:
+  USOD10K:
+    name: dataset.data_val.test_dataset
+    params:
+      image_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD10K/TestDataset/Imgs/'
+      gt_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD10K/TestDataset/GT/'
+      testsize: 352
+  UFO120:
+    name: dataset.data_val.test_dataset
+    params:
+      image_root: '/root/autodl-tmp/WaterFlow/media/dataset/UFO120/TestDataset/Imgs/'
+      gt_root: '/root/autodl-tmp/WaterFlow/media/dataset/UFO120/TestDataset/GT/'
+      testsize: 352
+  SUIM:
+    name: dataset.data_val.test_dataset
+    params:
+      image_root: '/root/autodl-tmp/WaterFlow/media/dataset/SUIM/TestDataset/Imgs/'
+      gt_root: '/root/autodl-tmp/WaterFlow/media/dataset/SUIM/TestDataset/GT/'
+      testsize: 352
+  USOD:
+    name: dataset.data_val.test_dataset
+    params:
+      image_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD/TestDataset/Imgs/'
+      gt_root: '/root/autodl-tmp/WaterFlow/media/dataset/USOD/TestDataset/GT/'
+      testsize: 352

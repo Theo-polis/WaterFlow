@@ -1,0 +1,15 @@
+torch==2.7.1
+torchvision==0.22.1
+rectified-flow-pytorch==0.4.1
+denoising-diffusion-pytorch==2.2.5
+timm==0.6.12
+albumentations==1.3.0
+opencv-python
+# mmcv-full==1.7.2 建议单独安装
+einops
+omegaconf
+accelerate
+huggingface-hub
+numba
+torchdiffeq
+tqdm
